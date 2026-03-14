@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>СИЛУЭТ Будущего 2026 — Форум об экономике, ИИ и обществе</title>
+  <meta name="description" content="Студенческий форум «СИЛУЭТ Будущего 2026» — пространство для взаимодействия студентов, исследователей, бизнеса и государства в эпоху ИИ. Саратов, 2026." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;700&family=Play:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- Animated Background Layers -->
+  <div class="bg-gradient" aria-hidden="true"></div>
+  <div class="bg-grid" aria-hidden="true"></div>
+  <canvas id="particles-canvas" aria-hidden="true"></canvas>
+
+  <!-- ============================================================
+       NAVIGATION v6 (Transparent glass, no frame)
+  ============================================================ -->
+  <nav class="nav" role="navigation" aria-label="Главное меню">
+    <!-- Top bar: contacts + lang switcher (outside of glass to avoid clip-path) -->
+    <div class="nav__topbar">
+              <a href="tel:+79999999999">+7 (999) 999-99-99</a>
+      <span class="nav__contact-sep">|</span>
+      <a href="mailto:info@силуэт-2026.рф">инфо@силуэт-2026.рф</a>
+      <span class="nav__contact-sep">|</span>
+      <div class="lang-switcher" role="group" aria-label="Выбор языка">
+        <button class="lang-btn active" id="lang-ru" data-lang="ru" aria-pressed="true">
+          <span class="lang-flag">🇷🇺</span> RU
+        </button>
+        <button class="lang-btn" id="lang-en" data-lang="en" aria-pressed="false">
+          <span class="lang-flag">🇬🇧</span> EN
+        </button>
+      </div>
+    </div>
+
+    <div class="nav__glass">
+      <div class="nav__glass-bg nav__glass-bg--left"></div>
+      <div class="nav__glass-bg nav__glass-bg--right"></div>
+
+      <div class="nav__main">
+        <div class="nav__logo-island">
+          <a href="#hero" class="nav__logo" aria-label="СИЛУЭТ Будущего 2026 — главная">
+            <img src="img/siluetlogo.png" alt="Логотип СИЛУЭТ Будущего 2026" />
+            <span class="nav__logo-text"><span data-i18n="hero.silhouette">СИЛУЭТ</span> <span data-i18n="hero.sub">Будущего — 2026</span></span>
+          </a>
+        </div>
+
+        <!-- Desktop Links (Centered between islands) -->
+        <ul class="nav__links-desktop" id="nav-links-desktop">
+          <li><button class="nav__link" data-section="about" data-i18n="nav.about">О форуме</button></li>
+          <li><button class="nav__link" data-section="program" data-i18n="nav.program">Программа</button></li>
+          <li><button class="nav__link" data-section="tracks" data-i18n="nav.tracks">Треки</button></li>
+          <li><button class="nav__link" data-section="activities" data-i18n="nav.activities">Активности</button></li>
+          <li><button class="nav__link" data-section="venue" data-i18n="nav.venue">Площадка</button></li>
+          <li><button class="nav__link" data-section="partners" data-i18n="nav.partners">Партнёры</button></li>
+        </ul>
+
+        <div class="nav__cta nav__cta--desktop">
+          <button class="nav__link" id="open-modal-nav" data-i18n="nav.register">Регистрация</button>
+        </div>
+
+        <div class="nav__burger-island">
+          <button class="nav__burger" aria-label="Меню" id="burger-btn" aria-expanded="false">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+
+        <div class="nav__drawer-overlay" id="nav-overlay"></div>
+        <div class="nav__drawer" id="nav-drawer">
+          <div class="nav__drawer-inner">
+            <div class="nav__drawer-header">
+              <div class="lang-switcher">
+                <button class="lang-btn active" data-lang="ru" id="drawer-lang-ru">🇷🇺 RU</button>
+                <button class="lang-btn" data-lang="en" id="drawer-lang-en">🇬🇧 EN</button>
+              </div>
+              <button class="nav__drawer-close" id="drawer-close">✕</button>
+            </div>
+
+            <ul class="nav__links-mobile" id="nav-links-mobile">
+              <li><button class="nav__link" data-section="about" data-i18n="nav.about">О форуме</button></li>
+              <li><button class="nav__link" data-section="program" data-i18n="nav.program">Программа</button></li>
+              <li><button class="nav__link" data-section="tracks" data-i18n="nav.tracks">Треки</button></li>
+              <li><button class="nav__link" data-section="activities" data-i18n="nav.activities">Активности</button></li>
+              <li><button class="nav__link" data-section="venue" data-i18n="nav.venue">Площадка</button></li>
+              <li><button class="nav__link" data-section="partners" data-i18n="nav.partners">Партнёры</button></li>
+              <li class="nav__cta">
+                <button class="nav__link" id="open-modal-nav-mobile" data-i18n="nav.register">Регистрация</button>
+              </li>
+            </ul>
+
+            <div class="nav__drawer-footer">
+              <div class="nav__drawer-contacts">
+                <a href="tel:+78005553535">+7 (800) 555-35-35</a>
+                <a href="mailto:info@forum2026.ru">info@forum2026.ru</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <!-- ============================================================
+         HERO
+    ============================================================ -->
+    <section class="hero" id="hero" data-theme="dark">
+      <div class="container">
+        <div class="hero__tile-wrap reveal">
+          <div class="hero__tile" id="hero-hitbox">
+            <img class="hero__tile-bg" src="img/siluetbg.png" alt="Визуальный образ форума СИЛУЭТ Будущего 2026" loading="eager" />
+            <div class="hero__tile-overlay"></div>
+            <div class="hero__tile-content">
+
+              <div class="hero__title-block">
+                <!-- Плашка над заголовком -->
+                <div class="hero__eyebrow">
+                  <span class="hero__eyebrow-dot"></span>
+                  <span data-i18n="hero.badge">Студенческий форум · Саратов · 2026</span>
+                </div>
+
+                <h1 class="hero__title">
+                  <span data-i18n="hero.silhouette">СИЛУЭТ</span>
+                  <span class="hero__title-sub" data-i18n="hero.sub">Будущего — 2026</span>
+                </h1>
+
+                <div class="hero__actions">
+                  <button class="btn-hero-primary" id="open-modal-hero" data-i18n="hero.reg_forum">Регистрация на форум</button>
+                  <div class="btn-hero-outline-wrap">
+                    <button class="btn-hero-outline" id="open-modal-hero-case" data-i18n="hero.reg_case">Регистрация на кейс-чемпионат</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Блок с краткой инфой справа -->
+              <div class="hero__meta-block">
+                <div class="hero__meta-item">
+                  <div class="hero__meta-label" data-i18n="hero.date_label">Дата проведения</div>
+                  <div class="hero__meta-value" data-i18n="hero.date">ДАТА БУДЕТ ОБЪЯВЛЕНА</div>
+                </div>
+                <div class="hero__meta-item">
+                  <div class="hero__meta-label" data-i18n="hero.venue_label">Площадка</div>
+                  <div class="hero__meta-value" data-i18n="hero.venue">ТЕХНОПАРК · САРАТОВ</div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         ACRONYM
+    ============================================================ -->
+    <section class="section" id="acronym" data-about-anchor>
+      <div class="container">
+        <p class="section-label reveal" data-i18n="nav.about">О ФОРУМЕ</p>
+        <h2 class="section-title reveal" data-i18n="acronym.title">Что значит СИЛУЭТ</h2>
+
+        <div class="acronym__grid">
+          <div class="acronym__item reveal reveal-delay-1">
+            <div class="acronym__inner">
+              <div class="acronym__letter-box-wrap">
+                <div class="acronym__letter-box">
+                  <div class="acronym__letter">С</div>
+                </div>
+              </div>
+              <div class="acronym__word-box-wrap">
+                <div class="acronym__word-box">
+                  <div class="acronym__word" data-i18n="acronym.s">Социология</div>
+                  <div class="acronym__mobile-word" data-i18n="acronym.s">Социология</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="acronym__item reveal reveal-delay-2">
+            <div class="acronym__inner">
+              <div class="acronym__letter-box-wrap">
+                <div class="acronym__letter-box">
+                  <div class="acronym__letter">И</div>
+                </div>
+              </div>
+              <div class="acronym__word-box-wrap">
+                <div class="acronym__word-box">
+                  <div class="acronym__word" data-i18n="acronym.i">ИИ</div>
+                  <div class="acronym__mobile-word" data-i18n="acronym.ai_expanded">Искусственный интеллект</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="acronym__item reveal reveal-delay-3">
+            <div class="acronym__inner">
+              <div class="acronym__letter-box-wrap">
+                <div class="acronym__letter-box">
+                  <div class="acronym__letter">Л</div>
+                </div>
+              </div>
+              <div class="acronym__word-box-wrap">
+                <div class="acronym__word-box">
+                  <div class="acronym__word" data-i18n="acronym.l">Лидерство</div>
+                  <div class="acronym__mobile-word" data-i18n="acronym.l">Лидерство</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="acronym__item reveal reveal-delay-4">
+            <div class="acronym__inner">
+              <div class="acronym__letter-box-wrap">
+                <div class="acronym__letter-box">
+                  <div class="acronym__letter">У</div>
+                </div>
+              </div>
+              <div class="acronym__word-box-wrap">
+                <div class="acronym__word-box">
+                  <div class="acronym__word" data-i18n="acronym.u">Управление</div>
+                  <div class="acronym__mobile-word" data-i18n="acronym.u">Управление</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="acronym__item reveal reveal-delay-5">
+            <div class="acronym__inner">
+              <div class="acronym__letter-box-wrap">
+                <div class="acronym__letter-box">
+                  <div class="acronym__letter">Э</div>
+                </div>
+              </div>
+              <div class="acronym__word-box-wrap">
+                <div class="acronym__word-box">
+                  <div class="acronym__word" data-i18n="acronym.e">Экономика</div>
+                  <div class="acronym__mobile-word" data-i18n="acronym.e">Экономика</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="acronym__item reveal reveal-delay-6">
+            <div class="acronym__inner">
+              <div class="acronym__letter-box-wrap">
+                <div class="acronym__letter-box">
+                  <div class="acronym__letter">Т</div>
+                </div>
+              </div>
+              <div class="acronym__word-box-wrap">
+                <div class="acronym__word-box">
+                  <div class="acronym__word" data-i18n="acronym.t">Технологии</div>
+                  <div class="acronym__mobile-word" data-i18n="acronym.t">Технологии</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         ABOUT
+    ============================================================ -->
+    <section class="section section--alt about-section" id="about">
+      <div class="container">
+        <div class="about__grid">
+          <!-- Статистика (мозаика) -->
+          <div class="about__stats">
+            <div class="stat-wrap reveal">
+              <div class="stat-inner">
+                <div class="stat-num">200+</div>
+                <div class="stat-label" data-i18n="about.stat1">ожидаемых участников</div>
+              </div>
+            </div>
+            <div class="stat-wrap reveal reveal-delay-1">
+              <div class="stat-inner">
+                <div class="stat-num">2 дня</div>
+                <div class="stat-label" data-i18n="about.stat2">насыщенной программы</div>
+              </div>
+            </div>
+            <div class="stat-wrap reveal reveal-delay-2">
+              <div class="stat-inner">
+                <div class="stat-num">11+</div>
+                <div class="stat-label" data-i18n="about.stat3">спикеров из бизнеса и власти</div>
+              </div>
+            </div>
+            <div class="stat-wrap reveal">
+              <div class="stat-inner">
+                <div class="stat-num">3 трека</div>
+                <div class="stat-label" data-i18n="about.stat4">тематических направления</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Текст -->
+          <div class="about__text">
+            <h2 class="section-title reveal" data-i18n="about.title">Сотрудничество в эпоху искусственного интеллекта</h2>
+            <p class="section-subtitle reveal" data-i18n="about.desc">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
+            </p>
+
+            <div class="about__topics">
+              <div class="topic-wrap reveal reveal-delay-1">
+                <div class="topic-inner">
+                  <svg class="topic-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                  <span data-i18n="about.point1">Lorem ipsum dolor sit amet consectetur adipiscing elit</span>
+                </div>
+              </div>
+              <div class="topic-wrap reveal reveal-delay-2">
+                <div class="topic-inner">
+                  <svg class="topic-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
+                  <span data-i18n="about.point2">Sed do eiusmod tempor incididunt ut labore et dolore</span>
+                </div>
+              </div>
+              <div class="topic-wrap reveal reveal-delay-3">
+                <div class="topic-inner">
+                  <svg class="topic-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                  <span data-i18n="about.point3">Ut enim ad minim veniam quis nostrud exercitation</span>
+                </div>
+              </div>
+              <div class="topic-wrap reveal reveal-delay-4">
+                <div class="topic-inner">
+                  <svg class="topic-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                  <span data-i18n="about.point4">Duis aute irure dolor in reprehenderit in voluptate</span>
+                </div>
+              </div>
+              <div class="topic-wrap reveal reveal-delay-5">
+                <div class="topic-inner">
+                  <svg class="topic-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                  <span data-i18n="about.point5">Excepteur sint occaecat cupidatat non proident</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         PROGRAM
+    ============================================================ -->
+    <section class="section" id="program">
+      <div class="container">
+        <p class="section-label reveal" data-i18n="nav.program">ПРОГРАММА</p>
+        <h2 class="section-title reveal" data-i18n="program.title">Расписание форума</h2>
+
+        <div class="program__tabs reveal">
+          <div class="program__tab-wrap active" data-target="day1">
+            <button class="program__tab" data-i18n="program.day1">День 1 — Открытие</button>
+          </div>
+          <div class="program__tab-wrap" data-target="day2">
+            <button class="program__tab" data-i18n="program.day2">День 2 — Кейс-чемпионат</button>
+          </div>
+        </div>
+
+        <div class="program__content">
+          <!-- DAY 1 -->
+          <div class="program__panel active" id="day1">
+            <div class="event-wrap reveal">
+              <div class="event-inner">
+                <div class="event-time">10:00 - 10:50</div>
+                <div class="event-info">
+                  <h3 class="event-title" data-i18n="program.ev1_t">Регистрация участников</h3>
+                  <p class="event-desc" data-i18n="program.ev1_d">Приветственный кофе, нетворкинг и выдача бейджей.</p>
+                </div>
+              </div>
+            </div>
+            <div class="event-wrap event-wrap--highlight reveal reveal-delay-1">
+              <div class="event-inner">
+                <div class="event-time">11:00 - 12:30</div>
+                <div class="event-info">
+                  <h3 class="event-title" data-i18n="program.ev2_t">Пленарная сессия</h3>
+                  <p class="event-desc" data-i18n="program.ev2_d">Открытие форума с приглашенными гостями от министерств и бизнеса.</p>
+                </div>
+              </div>
+            </div>
+            <div class="event-wrap reveal reveal-delay-2">
+              <div class="event-inner">
+                <div class="event-time">12:30 - 13:30</div>
+                <div class="event-info">
+                  <h3 class="event-title" data-i18n="program.ev3_t">Лектория / Треки</h3>
+                  <p class="event-desc" data-i18n="program.ev3_d">Параллельные лекции по направлениям ИИ и Экономики.</p>
+                </div>
+              </div>
+            </div>
+            <div class="event-wrap reveal reveal-delay-3">
+              <div class="event-inner">
+                <div class="event-time">13:30 - 14:20</div>
+                <div class="event-info">
+                  <h3 class="event-title" data-i18n="program.ev4_t">Обед</h3>
+                  <p class="event-desc" data-i18n="program.ev4_d">Перерыв на обед в зоне фудкорта ОЭЗ.</p>
+                </div>
+              </div>
+            </div>
+            <div class="event-wrap reveal reveal-delay-4">
+              <div class="event-inner">
+                <div class="event-time">14:20 - 15:00</div>
+                <div class="event-info">
+                  <h3 class="event-title">Мастер-класс</h3>
+                  <p class="event-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                </div>
+              </div>
+            </div>
+            <div class="event-wrap reveal reveal-delay-5">
+              <div class="event-inner">
+                <div class="event-time">15:00 - 16:00</div>
+                <div class="event-info">
+                  <h3 class="event-title">Свободное общение</h3>
+                  <p class="event-desc">Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- DAY 2 -->
+          <div class="program__panel" id="day2">
+            <div class="event-wrap reveal">
+              <div class="event-inner">
+                <div class="event-time">10:00 - 14:00</div>
+                <div class="event-info">
+                  <h3 class="event-title" data-i18n="program.ev5_t">Кейс-Чемпионат</h3>
+                  <p class="event-desc" data-i18n="program.ev5_d">Решение реальных бизнес-задач от партнёров форума.</p>
+                </div>
+              </div>
+            </div>
+            <div class="event-wrap reveal reveal-delay-1">
+              <div class="event-inner">
+                <div class="event-time">14:00 - 15:00</div>
+                <div class="event-info">
+                  <h3 class="event-title" data-i18n="program.ev6_t">Защита проектов</h3>
+                  <p class="event-desc" data-i18n="program.ev6_d">Команды презентуют свои решения жюри.</p>
+                </div>
+              </div>
+            </div>
+            <div class="event-wrap reveal reveal-delay-2">
+              <div class="event-inner">
+                <div class="event-time">15:00 - 16:30</div>
+                <div class="event-info">
+                  <h3 class="event-title">Подведение итогов</h3>
+                  <p class="event-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                </div>
+              </div>
+            </div>
+            <div class="event-wrap reveal reveal-delay-3">
+              <div class="event-inner">
+                <div class="event-time">16:30 - 17:00</div>
+                <div class="event-info">
+                  <h3 class="event-title">Награждение</h3>
+                  <p class="event-desc">Duis aute irure dolor in reprehenderit in voluptate velit.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         TRACKS
+    ============================================================ -->
+    <section class="section section--alt" id="tracks">
+      <div class="container">
+        <p class="section-label reveal" data-i18n="nav.tracks">НАПРАВЛЕНИЯ ФОРУМА</p>
+        <h2 class="section-title reveal" data-i18n="tracks.title">Тематические треки</h2>
+
+        <div class="tracks__grid">
+          <!-- Трек 1 -->
+          <div class="track-wrap reveal">
+            <div class="track-inner">
+              <div class="track-icon-wrap">
+                <svg class="track-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+              </div>
+              <h3 class="track-title" data-i18n="tracks.t1">Экономика</h3>
+              <p class="track-desc" data-i18n="tracks.d1">Новые реалии бизнеса, стартапы и инвестиции в условиях технологического перехода.</p>
+              <div class="track-topics">
+                <span class="track-topic" data-i18n="tracks.p1_1">Инвестиции</span>
+                <span class="track-topic" data-i18n="tracks.p1_2">Стартапы</span>
+              </div>
+            </div>
+          </div>
+          <!-- Трек 2 -->
+          <div class="track-wrap reveal reveal-delay-1">
+            <div class="track-inner">
+              <div class="track-icon-wrap">
+                <svg class="track-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="15" x2="23" y2="15"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="15" x2="4" y2="15"></line></svg>
+              </div>
+              <h3 class="track-title" data-i18n="tracks.t2">ИИ & IT</h3>
+              <p class="track-desc" data-i18n="tracks.d2">Как внедрение нейросетей меняет профессии, управление и повседневность.</p>
+              <div class="track-topics">
+                <span class="track-topic" data-i18n="tracks.p2_1">Нейросети</span>
+                <span class="track-topic" data-i18n="tracks.p2_2">Автоматизация</span>
+              </div>
+            </div>
+          </div>
+          <!-- Трек 3 -->
+          <div class="track-wrap reveal reveal-delay-2">
+            <div class="track-inner">
+              <div class="track-icon-wrap">
+                <svg class="track-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+              </div>
+              <h3 class="track-title" data-i18n="tracks.t3">Управление</h3>
+              <p class="track-desc" data-i18n="tracks.d3">Менеджмент будущего: от лидерства до построения эффективных команд.</p>
+              <div class="track-topics">
+                <span class="track-topic" data-i18n="tracks.p3_1">Лидерство</span>
+                <span class="track-topic" data-i18n="tracks.p3_2">Командообразование</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         ACTIVITIES 
+    ============================================================ -->
+    <section class="section" id="activities">
+      <div class="container">
+        <p class="section-label reveal" data-i18n="nav.activities">АКТИВНОСТИ</p>
+        <h2 class="section-title reveal" data-i18n="activities.title">Помимо лектория</h2>
+
+        <div class="activities__grid">
+          <div class="activity-wrap reveal">
+            <div class="activity-inner">
+              <div class="activity-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20.94c1.5 0 2.75 1.06 4 1.06 3 0 6-8 6-12.22A4.91 4.91 0 0 0 17 5c-2.22 0-4 1.44-5 2-1-.56-2.78-2-5-2a4.9 4.9 0 0 0-5 4.78C2 14 5 22 8 22c1.25 0 2.5-1.06 4-1.06Z"></path><path d="M10 2c1 .5 2 2 2 5"></path></svg>
+              </div>
+              <h3 class="activity-title">Lorem Ipsum</h3>
+              <p class="activity-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+            </div>
+          </div>
+          <div class="activity-wrap reveal reveal-delay-1">
+            <div class="activity-inner">
+              <div class="activity-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>
+              </div>
+              <h3 class="activity-title">Lorem Ipsum</h3>
+              <p class="activity-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+            </div>
+          </div>
+          <div class="activity-wrap reveal reveal-delay-2">
+            <div class="activity-inner">
+              <div class="activity-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+              </div>
+              <h3 class="activity-title">Lorem Ipsum</h3>
+              <p class="activity-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+            </div>
+          </div>
+          <div class="activity-wrap reveal reveal-delay-3">
+            <div class="activity-inner">
+              <div class="activity-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+              </div>
+              <h3 class="activity-title">Lorem Ipsum</h3>
+              <p class="activity-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+            </div>
+          </div>
+          <div class="activity-wrap reveal reveal-delay-4">
+            <div class="activity-inner">
+              <div class="activity-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+              </div>
+              <h3 class="activity-title">Lorem Ipsum</h3>
+              <p class="activity-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+            </div>
+          </div>
+          <div class="activity-wrap reveal reveal-delay-5">
+            <div class="activity-inner">
+              <div class="activity-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+              </div>
+              <h3 class="activity-title">Lorem Ipsum</h3>
+              <p class="activity-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         VENUE & MAP
+    ============================================================ -->
+    <section class="section section--alt" id="venue">
+      <div class="container">
+        <p class="section-label reveal" data-i18n="nav.venue">МЕСТО ПРОВЕДЕНИЯ</p>
+        <h2 class="section-title reveal" data-i18n="venue.title">Открытая площадка</h2>
+        
+        <div class="venue__grid">
+          <div class="venue-info-wrap reveal">
+            <div class="venue-info-inner">
+              <h3 class="venue-name" data-i18n="hero.venue">ТЕХНОПАРК SARATOV DIGITAL</h3>
+              <div class="venue-address">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                <span data-i18n="venue.address">г. Саратов, ул. им. Кутякова И.С., д. 3</span>
+              </div>
+              <div class="venue-details">
+                <div class="venue-detail-wrap">
+                  <div class="venue-detail-inner">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg>
+                    <span data-i18n="venue.f1">Кофе-брейк зоны</span>
+                  </div>
+                </div>
+                <div class="venue-detail-wrap">
+                  <div class="venue-detail-inner">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"></path><path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3"></path></svg>
+                    <span data-i18n="venue.f2">Конференц-залы</span>
+                  </div>
+                </div>
+                <div class="venue-detail-wrap">
+                  <div class="venue-detail-inner">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                    <span data-i18n="venue.f3">Зоны нетворкинга</span>
+                  </div>
+                </div>
+                <div class="venue-detail-wrap">
+                  <div class="venue-detail-inner">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                    <span data-i18n="venue.f4">Экспо-зона</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="map-wrap reveal reveal-delay-1">
+            <div class="map-inner">
+              <iframe 
+                src="https://yandex.ru/map-widget/v1/?ll=46.0115%2C51.5312&z=17&text=%D0%A1%D0%B0%D1%80%D0%B0%D1%82%D0%BE%D0%B2%2C%20%D1%83%D0%BB.%20%D0%B8%D0%BC.%20%D0%9A%D1%83%D1%82%D1%8F%D0%BA%D0%BE%D0%B2%D0%B0%20%D0%98.%D0%A1.%2C%20%D0%B4.%203&controls=0" 
+                width="100%" 
+                height="100%" 
+                frameborder="0"
+                title="Карта">
+              </iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         PARTNERS
+    ============================================================ -->
+    <section class="section" id="partners">
+      <div class="container">
+        <p class="section-label reveal" data-i18n="nav.partners">ПАРТНЁРЫ</p>
+        <h2 class="section-title reveal" data-i18n="partners.title">При поддержке бизнеса</h2>
+
+        <div class="partners__flex">
+          <div class="partner-wrap partner-wrap--hunttech reveal">
+            <div class="partner-inner">
+              <img src="img/hunttechlogo.png" alt="Ханттек" class="partner-logo--default" />
+              <img src="img/hunttechwhite.png" alt="Ханттек" class="partner-logo--hover" />
+            </div>
+          </div>
+          <div class="partner-wrap reveal reveal-delay-1">
+            <div class="partner-inner">
+              <img src="img/Alfa-Bank.svg.png" alt="Альфа-Банк" />
+            </div>
+          </div>
+          <div class="partner-wrap reveal reveal-delay-2">
+            <div class="partner-inner">
+              <img src="img/Sber_logo.png" alt="Сбер" />
+            </div>
+          </div>
+          <div class="partner-wrap reveal reveal-delay-3">
+            <div class="partner-inner">
+              <img src="img/Yandex_logo_2021_Russian.svg.png" alt="Яндекс" />
+            </div>
+          </div>
+          <div class="partner-wrap reveal reveal-delay-4">
+            <div class="partner-inner">
+              <img src="img/lanit_logo.png" alt="ЛАНИТ" class="partner-logo--lanit" />
+            </div>
+          </div>
+          <div class="partner-wrap reveal reveal-delay-5">
+            <div class="partner-inner">
+              <img src="img/УЦ Трайтек.png" alt="УЦ Трайтек" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         REGISTER CTA
+    ============================================================ -->
+    <section class="register" id="register" data-theme="dark">
+      <div class="container">
+        <div class="register-wrap reveal">
+          <div class="register-inner">
+            <div>
+              <h2 class="register-title" data-i18n="cta.title">Стань частью форума<br>«СИЛУЭТ Будущего 2026»</h2>
+              <p class="register-desc" data-i18n="cta.desc">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              </p>
+            </div>
+            <div class="register-actions">
+              <button class="btn-reg btn-reg--forum" id="open-modal-cta" data-i18n="hero.reg_forum">Зарегистрироваться на форум</button>
+              <div class="btn-reg-outline-wrap">
+                <button class="btn-reg btn-reg--case" id="open-modal-cta-case" data-i18n="hero.reg_case">Зарегистрироваться на кейс-чемпионат</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       FOOTER v3
+  ============================================================ -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-line-wrap"></div>
+
+      <div class="footer__grid">
+        <!-- Brand: большой логотип + соцсети -->
+        <div class="footer-brand">
+          <div class="footer-brand-logo">
+            <img src="img/siluetlogo.png" alt="СИЛУЭТ Будущего 2026" />
+          </div>
+          <div class="footer-socials">
+            <a href="#" class="footer-social-wrap" aria-label="ВКонтакте">
+              <div class="footer-social">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M15.07 2H8.93C3.33 2 2 3.33 2 8.93v6.14C2 20.67 3.33 22 8.93 22h6.14C20.67 22 22 20.67 22 15.07V8.93C22 3.33 20.67 2 15.07 2zm2.95 13.27h-1.63c-.62 0-.81-.49-1.92-1.62-.97-.95-1.4-1.08-1.64-1.08-.33 0-.43.1-.43.57v1.48c0 .41-.13.65-1.21.65-1.79 0-3.76-1.08-5.15-3.1C4.5 9.96 4 8.1 4 7.65c0-.24.09-.46.57-.46h1.63c.43 0 .59.19.76.64.84 2.42 2.24 4.54 2.82 4.54.22 0 .32-.1.32-.65V9.5c-.07-1.17-.68-1.27-.68-1.68 0-.2.16-.4.43-.4h2.56c.36 0 .49.2.49.62v3.3c0 .36.16.49.27.49.22 0 .4-.13.81-.54 1.25-1.4 2.14-3.55 2.14-3.55.12-.24.32-.46.76-.46h1.63c.49 0 .6.25.49.62-.21.95-2.27 3.87-2.27 3.87-.17.28-.23.4 0 .71.17.23.73.71 1.1 1.14.68.77 1.21 1.42 1.35 1.87.14.43-.09.65-.57.65z"/></svg>
+              </div>
+            </a>
+            <a href="#" class="footer-social-wrap" aria-label="Telegram">
+              <div class="footer-social">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8l-1.68 7.93c-.12.58-.46.72-.93.45l-2.57-1.9-1.24 1.19c-.14.13-.25.25-.52.25l.19-2.66 4.84-4.37c.21-.19-.05-.29-.32-.1L7.6 14.43l-2.52-.79c-.55-.17-.56-.55.11-.82l9.85-3.8c.46-.17.86.11.7.78z"/></svg>
+              </div>
+            </a>
+            <a href="#" class="footer-social-wrap" aria-label="YouTube">
+              <div class="footer-social">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2c-.3-1.1-1.1-1.9-2.2-2.2C19.4 3.5 12 3.5 12 3.5s-7.4 0-9.3.5c-1.1.3-1.9 1.1-2.2 2.2C0 8.1 0 12 0 12s0 3.9.5 5.8c.3 1.1 1.1 1.9 2.2 2.2 1.9.5 9.3.5 9.3.5s7.4 0 9.3-.5c1.1-.3 1.9-1.1 2.2-2.2.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.5 15.5V8.5l6.5 3.5-6.5 3.5z"/></svg>
+              </div>
+            </a>
+            <a href="#" class="footer-social-wrap" aria-label="Other">
+              <div class="footer-social">
+                <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- Навигация -->
+        <div>
+          <p class="footer-col-title" data-i18n="footer.nav">Навигация</p>
+          <ul class="footer-links">
+            <li><button class="footer-link nav__link" data-section="about" data-i18n="nav.about">О форуме</button></li>
+            <li><button class="footer-link nav__link" data-section="program" data-i18n="nav.program">Программа</button></li>
+            <li><button class="footer-link nav__link" data-section="tracks" data-i18n="nav.tracks">Треки</button></li>
+            <li><button class="footer-link nav__link" data-section="activities" data-i18n="nav.activities">Активности</button></li>
+          </ul>
+        </div>
+
+        <!-- Информация -->
+        <div>
+          <p class="footer-col-title" data-i18n="footer.info">Информация</p>
+          <ul class="footer-links">
+            <li><button class="footer-link nav__link" data-section="venue" data-i18n="nav.venue">Площадка</button></li>
+            <li><button class="footer-link nav__link" data-section="partners" data-i18n="nav.partners">Партнёры</button></li>
+          </ul>
+        </div>
+
+        <div class="footer-contacts">
+          <p class="footer-col-title" data-i18n="footer.contacts">Контакты</p>
+          <div class="footer-contact-row">
+            <div class="footer-contact-wrap">
+              <a href="mailto:info@силуэт-2026.рф" class="footer-contact">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                info@силуэт-2026.рф
+              </a>
+            </div>
+            <div class="footer-contact-wrap">
+              <a href="tel:+79999999999" class="footer-contact">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                +7 (999) 999-99-99
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span class="footer-domain">СИЛУЭТ-2026.РФ</span>
+        <span data-i18n="footer.copy">© 2026 Все права защищены.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       REGISTRATION MODAL
+  ============================================================ -->
+  <div class="modal-overlay" id="reg-modal" aria-hidden="true" role="dialog">
+    <div class="modal-wrap">
+      <div class="modal-inner">
+        
+        <div class="modal-header">
+          <div>
+            <h2 class="modal-title" data-i18n="modal.title">Регистрация на форум</h2>
+            <p class="modal-subtitle" data-i18n="modal.subtitle">Заполните поля ниже, чтобы стать участником.</p>
+          </div>
+          <button class="modal-close" id="modal-close" aria-label="Закрыть">✕</button>
+        </div>
+
+        <form id="registration-form">
+          <div class="form-tabs">
+            <div class="form-tab-wrap active" id="tab-forum-wrap">
+              <button type="button" class="form-tab" id="tab-forum" data-i18n="modal.tab1">Участник форума</button>
+            </div>
+            <div class="form-tab-wrap" id="tab-case-wrap">
+              <button type="button" class="form-tab" id="tab-case" data-i18n="modal.tab2">Кейс-чемпионат</button>
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-field">
+              <label class="form-label" for="inp-name" data-i18n="modal.name">ФИО</label>
+              <div class="input-wrap">
+                <input class="form-input" type="text" id="inp-name" placeholder="Иванов Иван Иванович" required />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-field">
+                <label class="form-label" for="inp-phone" data-i18n="modal.phone">Телефон</label>
+                <div class="input-wrap">
+                  <input class="form-input" type="tel" id="inp-phone" placeholder="+7 (999) 000-00-00" required />
+                </div>
+              </div>
+              <div class="form-field">
+                <label class="form-label" for="inp-email">E-MAIL</label>
+                <div class="input-wrap">
+                  <input class="form-input" type="email" id="inp-email" placeholder="mail@example.com" required />
+                </div>
+              </div>
+            </div>
+
+            <div class="form-field">
+              <label class="form-label" for="inp-role" data-i18n="modal.role">Статус</label>
+              <div class="input-wrap">
+                <select class="form-select" id="inp-role" name="role" required>
+                <option value="" disabled selected data-i18n="modal.role_ph">Выберите вашу роль</option>
+                <option value="student" data-i18n="modal.role_s">Студент</option>
+                <option value="expert" data-i18n="modal.role_e">Эксперт</option>
+                <option value="partner" data-i18n="modal.role_p">Партнёр</option>
+              </select>
+              </div>
+            </div>
+
+            <div class="form-field">
+              <label class="form-label" for="inp-about" data-i18n="modal.about">Сфера интересов</label>
+              <div class="input-wrap">
+                <textarea class="form-textarea" id="inp-about" rows="3" placeholder="Расскажите коротко о себе и ожиданиях от форума..."></textarea>
+              </div>
+            </div>
+          </div>
+
+          <label class="form-consent">
+            <input type="checkbox" id="inp-consent" name="consent" required />
+            <span data-i18n="modal.consent">Я согласен(-а) с <a href="#" onclick="return false;">политикой обработки персональных данных</a> и даю согласие на их обработку в целях организации форума.</span>
+          </label>
+
+          <div class="form-submit-wrap">
+            <button type="submit" class="btn-submit" id="form-submit-btn">
+              <span class="btn-submit-text" data-i18n="modal.submit">Подать заявку</span>
+              <span class="btn-submit-success hidden">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="width:20px;height:20px;"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span data-i18n="modal.success">ЗАЯВКА ОТПРАВЛЕНА!</span>
+              </span>
+            </button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>
