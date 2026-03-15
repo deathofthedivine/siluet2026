@@ -23,7 +23,7 @@
   <nav class="nav" role="navigation" aria-label="Главное меню">
     <!-- Top bar: contacts + lang switcher (outside of glass to avoid clip-path) -->
     <div class="nav__topbar">
-              <a href="tel:+79999999999">+7 (999) 999-99-99</a>
+      <a href="tel:+79999999999">+7 (999) 999-99-99</a>
       <span class="nav__contact-sep">|</span>
       <a href="mailto:info@силуэт-2026.рф">инфо@силуэт-2026.рф</a>
       <span class="nav__contact-sep">|</span>
@@ -41,10 +41,11 @@
       <div class="nav__glass-bg nav__glass-bg--left"></div>
       <div class="nav__glass-bg nav__glass-bg--right"></div>
 
-      <div class="nav__main">
-        <div class="nav__logo-island">
+      <div class="nav__main nav__main--islands-shift">
+        <div class="nav__logo-island nav__logo-island--edge">
           <a href="#hero" class="nav__logo" aria-label="СИЛУЭТ Будущего 2026 — главная">
-            <img src="img/siluetlogo.png" alt="Логотип СИЛУЭТ Будущего 2026" />
+            <img src="img/siluetlogo.png" class="nav__logo-img--full" alt="Логотип СИЛУЭТ Будущего 2026" />
+            <img src="img/siletnoltr.png" class="nav__logo-img--icon" alt="СИЛУЭТ Будущего 2026" />
             <span class="nav__logo-text"><span data-i18n="hero.silhouette">СИЛУЭТ</span> <span data-i18n="hero.sub">Будущего — 2026</span></span>
           </a>
         </div>
@@ -63,7 +64,7 @@
           <button class="nav__link" id="open-modal-nav" data-i18n="nav.register">Регистрация</button>
         </div>
 
-        <div class="nav__burger-island">
+        <div class="nav__burger-island nav__burger-island--edge">
           <button class="nav__burger" aria-label="Меню" id="burger-btn" aria-expanded="false">
             <span></span><span></span><span></span>
           </button>
@@ -94,7 +95,7 @@
 
             <div class="nav__drawer-footer">
               <div class="nav__drawer-contacts">
-                <a href="tel:+79999999999">+7 (999) 999-99-99</a>
+                <a href="tel:+78005553535">+7 (800) 555-35-35</a>
                 <a href="mailto:info@forum2026.ru">info@forum2026.ru</a>
               </div>
             </div>
@@ -103,6 +104,31 @@
       </div>
     </div>
   </nav>
+
+  <style>
+    @media (max-width: 900px) {
+      .nav__main--islands-shift {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-left: max(env(safe-area-inset-left), 12px);
+        padding-right: max(env(safe-area-inset-right), 12px);
+      }
+      .nav__logo-island--edge {
+        margin-left: 0;
+      }
+      .nav__burger-island--edge {
+        margin-right: 0;
+      }
+    }
+    @media (min-width: 1151px) {
+      .nav__logo-island--edge,
+      .nav__burger-island--edge {
+        margin-left: initial;
+        margin-right: initial;
+      }
+    }
+  </style>
 
   <main>
     <!-- ============================================================
@@ -293,40 +319,46 @@
 
           <!-- Текст -->
           <div class="about__text">
-            <h2 class="section-title reveal" data-i18n="about.title">Сотрудничество в эпоху искусственного интеллекта</h2>
-            <p class="section-subtitle reveal" data-i18n="about.desc">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
-            </p>
+            <h2 class="section-title reveal" data-i18n="about.title">Пространство идей, технологий и новых карьерных возможностей</h2>
+            <p class="section-subtitle reveal" data-i18n="about.desc">«СИЛУЭТ будущего — 2026» — это двухдневный форум, объединяющий студентов, исследователей, предпринимателей и представителей государства для обсуждения тенденций в экономике, социологии и технологиях, в особенности ИИ, влияющих на будущее общества, экономики и рынка труда.</p>
+            <p class="section-subtitle about__desc-extra reveal" data-i18n="about.desc_extra">Наша цель — создать площадку, где талантливая молодежь сможет взаимодействовать с лидерами индустрий, решать реальные бизнес-задачи и находить карьерные возможности.</p>
+            <p class="section-subtitle about__desc-end reveal" data-i18n="about.desc_end">Форум станет местом, где идеи превращаются в решения, а знакомства — в будущие проекты и карьеры.</p>
 
             <div class="about__topics">
               <div class="topic-wrap reveal reveal-delay-1">
                 <div class="topic-inner">
                   <svg class="topic-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                  <span data-i18n="about.point1">Lorem ipsum dolor sit amet consectetur adipiscing elit</span>
+                  <span data-i18n="about.point1">Взаимодействие с лидерами индустрий</span>
                 </div>
               </div>
               <div class="topic-wrap reveal reveal-delay-2">
                 <div class="topic-inner">
                   <svg class="topic-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
-                  <span data-i18n="about.point2">Sed do eiusmod tempor incididunt ut labore et dolore</span>
+                  <span data-i18n="about.point2">Решение реальных бизнес-задач</span>
                 </div>
               </div>
               <div class="topic-wrap reveal reveal-delay-3">
                 <div class="topic-inner">
                   <svg class="topic-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
-                  <span data-i18n="about.point3">Ut enim ad minim veniam quis nostrud exercitation</span>
+                  <span data-i18n="about.point3">Карьерные возможности</span>
                 </div>
               </div>
               <div class="topic-wrap reveal reveal-delay-4">
                 <div class="topic-inner">
                   <svg class="topic-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-                  <span data-i18n="about.point4">Duis aute irure dolor in reprehenderit in voluptate</span>
+                  <span data-i18n="about.point4">Идеи превращаются в решения</span>
                 </div>
               </div>
               <div class="topic-wrap reveal reveal-delay-5">
                 <div class="topic-inner">
                   <svg class="topic-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-                  <span data-i18n="about.point5">Excepteur sint occaecat cupidatat non proident</span>
+                  <span data-i18n="about.point5">Знакомства в проекты и карьеры</span>
+                </div>
+              </div>
+              <div class="topic-wrap reveal reveal-delay-6">
+                <div class="topic-inner">
+                  <svg class="topic-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                  <span data-i18n="about.point6">Обсуждение трендов: экономика, ИИ, общество</span>
                 </div>
               </div>
             </div>
@@ -343,10 +375,11 @@
       <div class="container">
         <p class="section-label reveal" data-i18n="nav.program">ПРОГРАММА</p>
         <h2 class="section-title reveal" data-i18n="program.title">Расписание форума</h2>
+        <p class="section-subtitle reveal" data-i18n="program.format_desc">Форум пройдет в течение двух насыщенных дней, сочетающих образовательную программу, командную работу и взаимодействие с компаниями.</p>
 
         <div class="program__tabs reveal">
           <div class="program__tab-wrap active" data-target="day1">
-            <button class="program__tab" data-i18n="program.day1">День 1 — Открытие</button>
+            <button class="program__tab" data-i18n="program.day1">День 1 — Выступления и мастермайнд</button>
           </div>
           <div class="program__tab-wrap" data-target="day2">
             <button class="program__tab" data-i18n="program.day2">День 2 — Кейс-чемпионат</button>
@@ -356,6 +389,22 @@
         <div class="program__content">
           <!-- DAY 1 -->
           <div class="program__panel active" id="day1">
+            <div class="program__day-intro-wrap reveal">
+              <div class="program__day-intro">
+                <button class="program__day-toggle" aria-expanded="false" aria-controls="day1-body">
+                  <h3 class="program__day-heading" data-i18n="program.day1_heading">ДЕНЬ 1: Экспертные выступления и мастермайнд</h3>
+                  <svg class="program__day-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </button>
+                <div class="program__day-body" id="day1-body">
+                  <p class="program__day-desc" data-i18n="program.day1_desc">Первый день посвящен обмену опытом, практическим знаниям и совместному поиску решений.</p>
+                  <ul class="program__day-list">
+                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg><span data-i18n="program.day1_p1">интерактивный формат коллективного мастермайнда</span></li>
+                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg><span data-i18n="program.day1_p2">выступления приглашённых спикеров — экспертов бизнеса, технологий и цифровой экономики</span></li>
+                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg><span data-i18n="program.day1_p3">обсуждение ключевых трендов цифровизации</span></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
             <div class="event-wrap reveal">
               <div class="event-inner">
                 <div class="event-time">10:00 - 10:50</div>
@@ -365,7 +414,7 @@
                 </div>
               </div>
             </div>
-            <div class="event-wrap event-wrap--highlight reveal reveal-delay-1">
+            <div class="event-wrap reveal reveal-delay-1">
               <div class="event-inner">
                 <div class="event-time">11:00 - 12:30</div>
                 <div class="event-info">
@@ -396,8 +445,8 @@
               <div class="event-inner">
                 <div class="event-time">14:20 - 15:00</div>
                 <div class="event-info">
-                  <h3 class="event-title">Мастер-класс</h3>
-                  <p class="event-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                  <h3 class="event-title" data-i18n="program.ev7_t">Мастермайнд</h3>
+                  <p class="event-desc" data-i18n="program.ev7_d">Участники объединятся в команды и будут решать мини-кейсы, подготовленные спикерами — применяя знания на практике и знакомясь с экспертами.</p>
                 </div>
               </div>
             </div>
@@ -405,8 +454,8 @@
               <div class="event-inner">
                 <div class="event-time">15:00 - 16:00</div>
                 <div class="event-info">
-                  <h3 class="event-title">Свободное общение</h3>
-                  <p class="event-desc">Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+                  <h3 class="event-title" data-i18n="program.ev8_t">Карьерная зона / Нетворкинг</h3>
+                  <p class="event-desc" data-i18n="program.ev8_d">Компании-партнёры открывают карьерные площадки — экспресс-интервью, нетворкинг, знакомство с перспективными студентами.</p>
                 </div>
               </div>
             </div>
@@ -414,12 +463,28 @@
 
           <!-- DAY 2 -->
           <div class="program__panel" id="day2">
+            <div class="program__day-intro-wrap reveal">
+              <div class="program__day-intro">
+                <button class="program__day-toggle" aria-expanded="false" aria-controls="day2-body">
+                  <h3 class="program__day-heading" data-i18n="program.day2_heading">ДЕНЬ 2: Студенческий кейс-чемпионат</h3>
+                  <svg class="program__day-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </button>
+                <div class="program__day-body" id="day2-body">
+                  <p class="program__day-desc" data-i18n="program.day2_desc">Во второй день пройдет кейс-чемпионат от компаний-партнёров. Участники будут решать практические задачи, связанные с внедрением цифровых решений в ресторанный бизнес. Команды представят свои решения перед экспертным жюри из представителей компаний.</p>
+                  <ul class="program__day-list">
+                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg><span data-i18n="program.day2_p1">поработать над реальными бизнес-кейсами</span></li>
+                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg><span data-i18n="program.day2_p2">проявить аналитические и управленческие навыки</span></li>
+                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg><span data-i18n="program.day2_p3">получить карьерные предложения от компаний</span></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
             <div class="event-wrap reveal">
               <div class="event-inner">
                 <div class="event-time">10:00 - 14:00</div>
                 <div class="event-info">
                   <h3 class="event-title" data-i18n="program.ev5_t">Кейс-Чемпионат</h3>
-                  <p class="event-desc" data-i18n="program.ev5_d">Решение реальных бизнес-задач от партнёров форума.</p>
+                  <p class="event-desc" data-i18n="program.ev5_d">Решение практических задач от компаний-партнёров, связанных с внедрением цифровых решений в ресторанный бизнес.</p>
                 </div>
               </div>
             </div>
@@ -428,7 +493,7 @@
                 <div class="event-time">14:00 - 15:00</div>
                 <div class="event-info">
                   <h3 class="event-title" data-i18n="program.ev6_t">Защита проектов</h3>
-                  <p class="event-desc" data-i18n="program.ev6_d">Команды презентуют свои решения жюри.</p>
+                  <p class="event-desc" data-i18n="program.ev6_d">Команды представят свои решения перед экспертным жюри из представителей компаний.</p>
                 </div>
               </div>
             </div>
@@ -436,8 +501,8 @@
               <div class="event-inner">
                 <div class="event-time">15:00 - 16:30</div>
                 <div class="event-info">
-                  <h3 class="event-title">Подведение итогов</h3>
-                  <p class="event-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                  <h3 class="event-title" data-i18n="program.ev9_t">Подведение итогов</h3>
+                  <p class="event-desc" data-i18n="program.ev9_d">Эксперты подводят итоги кейс-чемпионата, оценивают представленные решения и объявляют победителей.</p>
                 </div>
               </div>
             </div>
@@ -445,8 +510,8 @@
               <div class="event-inner">
                 <div class="event-time">16:30 - 17:00</div>
                 <div class="event-info">
-                  <h3 class="event-title">Награждение</h3>
-                  <p class="event-desc">Duis aute irure dolor in reprehenderit in voluptate velit.</p>
+                  <h3 class="event-title" data-i18n="program.ev10_t">Награждение</h3>
+                  <p class="event-desc" data-i18n="program.ev10_d">Торжественное вручение наград победителям и призёрам кейс-чемпионата. Закрытие форума.</p>
                 </div>
               </div>
             </div>
@@ -524,8 +589,8 @@
               <div class="activity-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20.94c1.5 0 2.75 1.06 4 1.06 3 0 6-8 6-12.22A4.91 4.91 0 0 0 17 5c-2.22 0-4 1.44-5 2-1-.56-2.78-2-5-2a4.9 4.9 0 0 0-5 4.78C2 14 5 22 8 22c1.25 0 2.5-1.06 4-1.06Z"></path><path d="M10 2c1 .5 2 2 2 5"></path></svg>
               </div>
-              <h3 class="activity-title">Lorem Ipsum</h3>
-              <p class="activity-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+              <h3 class="activity-title">Мастермайнд</h3>
+              <p class="activity-desc">Участники объединяются в команды для решения мини-кейсов, подготовленных спикерами — нетворкинг и работа над реальными задачами.</p>
             </div>
           </div>
           <div class="activity-wrap reveal reveal-delay-1">
@@ -533,8 +598,8 @@
               <div class="activity-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>
               </div>
-              <h3 class="activity-title">Lorem Ipsum</h3>
-              <p class="activity-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+              <h3 class="activity-title">Выступления спикеров</h3>
+              <p class="activity-desc">Приглашённые эксперты из бизнеса, технологий и цифровой экономики делятся знаниями и обсуждают ключевые тренды.</p>
             </div>
           </div>
           <div class="activity-wrap reveal reveal-delay-2">
@@ -542,8 +607,8 @@
               <div class="activity-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
               </div>
-              <h3 class="activity-title">Lorem Ipsum</h3>
-              <p class="activity-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+              <h3 class="activity-title">Кейс-чемпионат</h3>
+              <p class="activity-desc">Решение практических задач от компаний-партнёров, связанных с внедрением цифровых решений. Защита перед экспертным жюри.</p>
             </div>
           </div>
           <div class="activity-wrap reveal reveal-delay-3">
@@ -551,8 +616,8 @@
               <div class="activity-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
               </div>
-              <h3 class="activity-title">Lorem Ipsum</h3>
-              <p class="activity-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+              <h3 class="activity-title">Карьерная зона</h3>
+              <p class="activity-desc">На протяжении форума работает зона компаний-партнёров: экспресс-интервью, нетворкинг и карьерные предложения.</p>
             </div>
           </div>
           <div class="activity-wrap reveal reveal-delay-4">
@@ -560,8 +625,8 @@
               <div class="activity-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
               </div>
-              <h3 class="activity-title">Lorem Ipsum</h3>
-              <p class="activity-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+              <h3 class="activity-title">Нетворкинг</h3>
+              <p class="activity-desc">Интерактивные форматы для знакомства с единомышленниками, экспертами и представителями бизнеса.</p>
             </div>
           </div>
           <div class="activity-wrap reveal reveal-delay-5">
@@ -569,8 +634,8 @@
               <div class="activity-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
               </div>
-              <h3 class="activity-title">Lorem Ipsum</h3>
-              <p class="activity-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+              <h3 class="activity-title">Партнёрские встречи</h3>
+              <p class="activity-desc">Компании-партнёры встречаются с талантливыми студентами и молодыми специалистами, ищут будущих сотрудников и стажёров.</p>
             </div>
           </div>
         </div>
@@ -622,7 +687,7 @@
             </div>
           </div>
           
-          <div class="map-wrap reveal reveal-delay-1">
+          <div class="map-wrap reveal">
             <div class="map-inner">
               <iframe 
                 src="https://yandex.ru/map-widget/v1/?ll=46.0115%2C51.5312&z=17&text=%D0%A1%D0%B0%D1%80%D0%B0%D1%82%D0%BE%D0%B2%2C%20%D1%83%D0%BB.%20%D0%B8%D0%BC.%20%D0%9A%D1%83%D1%82%D1%8F%D0%BA%D0%BE%D0%B2%D0%B0%20%D0%98.%D0%A1.%2C%20%D0%B4.%203&controls=0" 
@@ -682,6 +747,131 @@
     </section>
 
     <!-- ============================================================
+         PACKAGES
+    ============================================================ -->
+    <section class="section section--alt" id="packages">
+      <div class="container">
+        <p class="section-label reveal" data-i18n="packages.label">ПАРТНЁРСТВО</p>
+        <h2 class="section-title reveal" data-i18n="packages.title">Пакеты участия для компаний</h2>
+        <p class="section-subtitle reveal" data-i18n="packages.desc">Мы предлагаем несколько форматов партнёрства. Форум станет точкой встречи бизнеса и перспективных молодых кадров.</p>
+
+        <!-- Карьерное пространство -->
+        <div class="career-space-wrap reveal">
+          <div class="career-space-inner">
+            <div class="career-space-left">
+              <h3 class="career-space-heading" data-i18n="career.heading">Карьерное пространство</h3>
+              <p class="career-space-intro" data-i18n="career.intro">На протяжении форума будет работать карьерная зона компаний.</p>
+            </div>
+            <div class="career-space-right">
+              <ul class="career-space-list">
+                <li class="career-space-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span data-i18n="career.f1">представить свою организацию</span>
+                </li>
+                <li class="career-space-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span data-i18n="career.f2">познакомиться с талантливыми студентами и молодыми специалистами</span>
+                </li>
+                <li class="career-space-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span data-i18n="career.f3">провести экспресс-интервью и нетворкинг</span>
+                </li>
+                <li class="career-space-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span data-i18n="career.f4">найти будущих сотрудников и стажёров</span>
+                </li>
+              </ul>
+              <p class="career-space-outro" data-i18n="career.outro">Форум станет точкой встречи бизнеса и перспективных молодых кадров.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="packages__grid">
+          <!-- Стандарт -->
+          <div class="package-wrap reveal">
+            <div class="package-inner">
+              <button class="package-toggle" aria-expanded="false" aria-controls="pkg1-body">
+                <div class="package-header">
+                  <h3 class="package-name" data-i18n="packages.p1_name">Стандарт</h3>
+                  <div class="package-price" data-i18n="packages.p1_price">25 000 ₽</div>
+                </div>
+                <svg class="package-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </button>
+              <ul class="package-features" id="pkg1-body">
+                <li class="package-feature">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span data-i18n="packages.p1_f1">Размещение площадки компании в карьерном пространстве</span>
+                </li>
+                <li class="package-feature">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span data-i18n="packages.p1_f2">Возможность взаимодействия с участниками форума</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Партнер -->
+          <div class="package-wrap reveal reveal-delay-1">
+            <div class="package-inner">
+              <button class="package-toggle" aria-expanded="false" aria-controls="pkg2-body">
+                <div class="package-header">
+                  <h3 class="package-name" data-i18n="packages.p2_name">Партнер</h3>
+                  <div class="package-price" data-i18n="packages.p2_price">50 000 ₽</div>
+                </div>
+                <svg class="package-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </button>
+              <ul class="package-features" id="pkg2-body">
+                <li class="package-feature">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span data-i18n="packages.p2_f1">Размещение площадки компании в карьерном пространстве</span>
+                </li>
+                <li class="package-feature">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span data-i18n="packages.p2_f2">Возможность взаимодействия с участниками форума</span>
+                </li>
+                <li class="package-feature">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span data-i18n="packages.p2_f3">Выступление представителя компании в качестве спикера</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Спонсор -->
+          <div class="package-wrap reveal reveal-delay-2">
+            <div class="package-inner">
+              <button class="package-toggle" aria-expanded="false" aria-controls="pkg3-body">
+                <div class="package-header">
+                  <h3 class="package-name" data-i18n="packages.p3_name">Спонсор</h3>
+                  <div class="package-price" data-i18n="packages.p3_price">100 000 ₽</div>
+                </div>
+                <svg class="package-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </button>
+              <ul class="package-features" id="pkg3-body">
+                <li class="package-feature">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span data-i18n="packages.p3_f1">Размещение площадки компании в карьерном пространстве</span>
+                </li>
+                <li class="package-feature">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span data-i18n="packages.p3_f2">Возможность взаимодействия с участниками форума</span>
+                </li>
+                <li class="package-feature">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span data-i18n="packages.p3_f3">Выступление представителя компании в качестве спикера</span>
+                </li>
+                <li class="package-feature">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span data-i18n="packages.p3_f4">VIP-статус официального спонсора форума</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
          REGISTER CTA
     ============================================================ -->
     <section class="register" id="register" data-theme="dark">
@@ -691,7 +881,7 @@
             <div>
               <h2 class="register-title" data-i18n="cta.title">Стань частью форума<br>«СИЛУЭТ Будущего 2026»</h2>
               <p class="register-desc" data-i18n="cta.desc">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Форум — это не просто мероприятие, а пространство, где формируются новые идеи, профессиональные связи и карьерные возможности. Присоединяйтесь к тем, кто создает будущее уже сегодня.
               </p>
             </div>
             <div class="register-actions">
